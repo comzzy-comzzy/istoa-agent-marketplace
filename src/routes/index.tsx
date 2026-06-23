@@ -103,7 +103,7 @@ const LEVELS = [
 
 function IStoaLanding() {
   return (
-    <main className="site-rise min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <TopBanner />
       <Nav />
       <Hero />
@@ -122,7 +122,7 @@ function IStoaLanding() {
 
 function TopBanner() {
   return (
-    <div className="bg-yellow text-foreground">
+    <div className="rise-item rise-soft rise-delay-0 bg-yellow text-foreground">
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-3 px-6 py-2.5 text-[12.5px]">
         <span className="rounded-full bg-foreground/90 px-2.5 py-0.5 font-mono text-[10.5px] uppercase tracking-wider text-background">
           Live
@@ -140,7 +140,7 @@ function TopBanner() {
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header className="rise-item rise-soft rise-delay-1 sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2.5">
           <LogoMark className="h-5 w-5" />
@@ -182,7 +182,7 @@ function Hero() {
     <section id="top" className="border-b border-border">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1fr]">
         {/* LEFT */}
-        <div className="flex flex-col justify-between gap-12 px-6 pb-10 pt-16 lg:px-12 lg:py-24">
+        <div className="rise-item rise-large rise-delay-2 flex flex-col justify-between gap-12 px-6 pb-10 pt-16 lg:px-12 lg:py-24">
           <div>
             <h1 className="font-display text-[52px] font-medium leading-[1.02] tracking-tight sm:text-[64px] lg:text-[80px]">
               Where agents
@@ -225,13 +225,14 @@ function Hero() {
           index="// 001"
           caption="// SERVICE NETWORK"
           aspect="aspect-[5/6] sm:aspect-[4/5] lg:aspect-auto lg:min-h-[640px]"
+          className="rise-item rise-large rise-delay-3"
         >
           <AgentMeshFigure />
         </FramedFigure>
       </div>
 
       {/* index row at bottom of hero like Monad */}
-      <div className="border-t border-border">
+      <div className="rise-item rise-soft rise-delay-4 border-t border-border">
         <div className="mx-auto grid max-w-[1400px] grid-cols-[60px_1fr_1.4fr] items-center gap-6 px-6 py-5 lg:px-12">
           <span className="font-mono text-[12px] text-foreground/70 tnum">1</span>
           <span className="h-px bg-border-strong" />
@@ -255,6 +256,7 @@ function SplitSection({
   button,
   figure,
   indexRow,
+  motion,
 }: {
   id: string;
   index: string;
@@ -264,11 +266,14 @@ function SplitSection({
   button: string;
   figure: React.ReactNode;
   indexRow: { n: string; label: string };
+  motion: { copy: string; figure: string; row: string };
 }) {
   return (
     <section id={id} className="border-b border-border">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_1fr]">
-        <div className="flex flex-col justify-center gap-7 px-6 py-16 lg:px-12 lg:py-24">
+        <div
+          className={`rise-item rise-large ${motion.copy} flex flex-col justify-center gap-7 px-6 py-16 lg:px-12 lg:py-24`}
+        >
           <div className="mono-label">{kicker}</div>
           <h2 className="font-display text-[44px] font-medium leading-[1.04] tracking-tight sm:text-[56px] lg:text-[68px]">
             {title}
@@ -285,11 +290,12 @@ function SplitSection({
           index={index}
           caption={kicker}
           aspect="aspect-[5/6] sm:aspect-[4/5] lg:aspect-auto lg:min-h-[640px]"
+          className={`rise-item rise-medium ${motion.figure}`}
         >
           {figure}
         </FramedFigure>
       </div>
-      <div className="border-t border-border">
+      <div className={`rise-item rise-soft ${motion.row} border-t border-border`}>
         <div className="mx-auto grid max-w-[1400px] grid-cols-[60px_1fr_1.4fr] items-center gap-6 px-6 py-5 lg:px-12">
           <span className="font-mono text-[12px] text-foreground/70 tnum">{indexRow.n}</span>
           <span className="h-px bg-border-strong" />
@@ -316,6 +322,7 @@ function SectionMarket() {
       button="View escrow flow"
       figure={<OrderBookFigure />}
       indexRow={{ n: "2", label: "USDC escrow for direct service purchase" }}
+      motion={{ copy: "rise-delay-5", figure: "rise-delay-6", row: "rise-delay-7" }}
     />
   );
 }
@@ -337,6 +344,7 @@ function SectionProtocol() {
       button="Read contract model"
       figure={<ProtocolFigure />}
       indexRow={{ n: "3", label: "Reputation from verified onchain history" }}
+      motion={{ copy: "rise-delay-6", figure: "rise-delay-7", row: "rise-delay-8" }}
     />
   );
 }
@@ -356,6 +364,7 @@ function SectionReputation() {
       button="See tier model"
       figure={<ColumnFigure />}
       indexRow={{ n: "4", label: "Arc-native service settlement" }}
+      motion={{ copy: "rise-delay-7", figure: "rise-delay-8", row: "rise-delay-9" }}
     />
   );
 }
@@ -376,6 +385,7 @@ function SectionSettlement() {
       button="See sample receipt"
       figure={<SettlementFigure />}
       indexRow={{ n: "5", label: "Service purchases settled in USDC" }}
+      motion={{ copy: "rise-delay-8", figure: "rise-delay-9", row: "rise-delay-10" }}
     />
   );
 }
@@ -386,14 +396,14 @@ function SectionIndex() {
   return (
     <section className="border-b border-border bg-muted/60">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 py-14 lg:grid-cols-[260px_1fr] lg:px-12">
-        <div>
+        <div className="rise-item rise-medium rise-delay-9">
           <div className="mono-label">// REPUTATION TIERS</div>
           <h3 className="mt-3 font-display text-3xl font-medium tracking-tight">The ledger.</h3>
           <p className="mt-3 max-w-[28ch] text-[13.5px] text-foreground/70">
             A compact trust model buyer agents can read before purchasing a service.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
+        <div className="rise-item rise-medium rise-delay-10 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
           {LEVELS.map((l) => (
             <div key={l.rank} className="bg-background p-5">
               <div className="flex items-baseline justify-between">
@@ -450,13 +460,13 @@ function FAQBand() {
   return (
     <section id="faq" className="border-b border-border bg-muted/60">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-6 py-20 lg:grid-cols-[320px_1fr] lg:px-12 lg:py-24">
-        <div>
+        <div className="rise-item rise-medium rise-delay-10">
           <div className="mono-label">// PLAINLY</div>
           <h2 className="mt-4 font-display text-[40px] font-medium leading-[1.04] tracking-tight sm:text-[52px]">
             Asked &<br /> <em className="not-italic text-yellow">answered.</em>
           </h2>
         </div>
-        <dl className="divide-y divide-border border-y border-border">
+        <dl className="rise-item rise-medium rise-delay-11 divide-y divide-border border-y border-border">
           {FAQ.map(([q, a]) => (
             <div key={q} className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-[1fr_2fr] sm:gap-10">
               <dt className="font-display text-[18px] font-medium">{q}</dt>
@@ -473,7 +483,7 @@ function FAQBand() {
 
 function Footer() {
   return (
-    <footer className="bg-background">
+    <footer className="rise-item rise-soft rise-delay-12 bg-background">
       <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-12">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
@@ -520,16 +530,18 @@ function FramedFigure({
   index,
   caption,
   aspect,
+  className = "",
   children,
 }: {
   index: string;
   caption: string;
   aspect: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
     <div
-      className={`relative overflow-hidden border-l border-border bg-background dot-grid ${aspect}`}
+      className={`relative overflow-hidden border-l border-border bg-background dot-grid ${aspect} ${className}`}
     >
       {/* corner brackets */}
       <CornerBracket className="absolute left-6 top-6 h-6 w-6 text-foreground/40" />
