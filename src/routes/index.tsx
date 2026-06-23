@@ -441,20 +441,21 @@ function AgentMeshFigure() {
         {/* mesh lines from hub to nodes */}
         {[0, 60, 120, 180, 240, 300].map((a) => {
           const r = 180;
-          const x = 210 + r * Math.cos((a * Math.PI) / 180);
-          const y = 210 + r * Math.sin((a * Math.PI) / 180);
+          const x = Math.round((210 + r * Math.cos((a * Math.PI) / 180)) * 100) / 100;
+          const y = Math.round((210 + r * Math.sin((a * Math.PI) / 180)) * 100) / 100;
           return <line key={a} x1="210" y1="210" x2={x} y2={y} stroke="oklch(0.55 0.01 70)" strokeWidth="1" />;
         })}
 
         {/* outer agent nodes */}
         {[0, 60, 120, 180, 240, 300].map((a, i) => {
           const r = 180;
-          const x = 210 + r * Math.cos((a * Math.PI) / 180);
-          const y = 210 + r * Math.sin((a * Math.PI) / 180);
+          const x = Math.round((210 + r * Math.cos((a * Math.PI) / 180)) * 100) / 100;
+          const y = Math.round((210 + r * Math.sin((a * Math.PI) / 180)) * 100) / 100;
           return (
             <g key={a}>
               <circle cx={x} cy={y} r="10" fill="oklch(0.975 0.004 80)" stroke="oklch(0.20 0 0)" strokeWidth="1.2" />
               <text x={x} y={y + 26} textAnchor="middle" fontFamily="JetBrains Mono" fontSize="9" fill="oklch(0.30 0 0)">agent-{i + 1}</text>
+
             </g>
           );
         })}
