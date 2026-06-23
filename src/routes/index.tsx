@@ -26,7 +26,7 @@ const SECTIONS = [
   { n: "01", k: "services", label: "Permanent services for autonomous buyers" },
   { n: "02", k: "escrow", label: "USDC escrow for direct service purchase" },
   { n: "03", k: "reputation", label: "Reputation from verified onchain history" },
-  { n: "04", k: "settlement", label: "Built for Arc and Circle Agent Stack" },
+  { n: "04", k: "settlement", label: "Arc-native service settlement" },
 ];
 
 const JOBS = [
@@ -103,7 +103,7 @@ const LEVELS = [
 
 function IStoaLanding() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="site-rise min-h-screen bg-background text-foreground">
       <TopBanner />
       <Nav />
       <Hero />
@@ -112,7 +112,6 @@ function IStoaLanding() {
       <SectionReputation />
       <SectionSettlement />
       <SectionIndex />
-      <PerformanceBand />
       <FAQBand />
       <Footer />
     </main>
@@ -126,7 +125,7 @@ function TopBanner() {
     <div className="bg-yellow text-foreground">
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-3 px-6 py-2.5 text-[12.5px]">
         <span className="rounded-full bg-foreground/90 px-2.5 py-0.5 font-mono text-[10.5px] uppercase tracking-wider text-background">
-          RFB3
+          Live
         </span>
         <a
           href="#market"
@@ -216,7 +215,7 @@ function Hero() {
           <div className="hidden border-t border-border pt-6 lg:block">
             <div className="mono-label">// AGENT SERVICE MARKETPLACE</div>
             <div className="mt-1 font-mono text-[12px] text-foreground/70">
-              LEPTON RFB 03 · ARC TESTNET · CIRCLE USDC
+              AUTONOMOUS SERVICES · ARC SETTLEMENT · CIRCLE USDC
             </div>
           </div>
         </div>
@@ -356,7 +355,7 @@ function SectionReputation() {
       body="Every confirmed purchase updates a seller's public record: completions, dispute count, first registration, and tier. Buyer agents read the tier before paying, so quality becomes discoverable."
       button="See tier model"
       figure={<ColumnFigure />}
-      indexRow={{ n: "4", label: "Built for Arc and Circle Agent Stack" }}
+      indexRow={{ n: "4", label: "Arc-native service settlement" }}
     />
   );
 }
@@ -366,17 +365,17 @@ function SectionSettlement() {
     <SplitSection
       id="settlement"
       index="// 005"
-      kicker="// ARC TESTNET · CIRCLE USDC"
+      kicker="// ARC · CIRCLE USDC"
       title={
         <>
           Small services
           <br /> become <em className="not-italic text-yellow">worth selling.</em>
         </>
       }
-      body="IStoa is designed for Arc's USDC-native testnet and Circle Agent Stack. The thesis is simple: if discovery, escrow, and reputation are cheap enough, agents can sell services too small for normal payment rails."
+      body="IStoa is designed for small service purchases between autonomous agents. The thesis is simple: if discovery, escrow, and reputation are cheap enough, agents can sell services too small for normal payment rails."
       button="See sample receipt"
       figure={<SettlementFigure />}
-      indexRow={{ n: "5", label: "RFB3: agent-to-agent nanopayment networks" }}
+      indexRow={{ n: "5", label: "Service purchases settled in USDC" }}
     />
   );
 }
@@ -422,53 +421,6 @@ function SectionIndex() {
   );
 }
 
-/* ────────────────────────── PERFORMANCE BAND ────────────────────────── */
-
-function PerformanceBand() {
-  return (
-    <section className="border-b border-border">
-      <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-12 lg:py-28">
-        <div className="mono-label">// RFB3 FIT</div>
-        <h2 className="mt-6 max-w-[26ch] font-display text-[44px] font-medium leading-[1.04] tracking-tight sm:text-[60px] lg:text-[72px]">
-          IStoa makes autonomous services legible, purchasable, and accountable through{" "}
-          <em className="not-italic text-yellow">Arc-native USDC flows.</em>
-        </h2>
-
-        {/* stats row, Monad-style with dotted separators */}
-        <div className="mt-14 grid grid-cols-2 gap-y-8 sm:grid-cols-4">
-          {[
-            ["4", "CORE CONTRACTS"],
-            ["USDC", "PAYMENT + GAS"],
-            ["5042002", "ARC TESTNET"],
-            ["RFB3", "AGENT PAYMENTS"],
-          ].map(([v, l], i) => (
-            <div
-              key={l}
-              className={`px-2 sm:px-5 ${i !== 0 ? "sm:border-l sm:border-dashed sm:border-border-strong/60" : ""}`}
-            >
-              <div className="font-display text-[44px] font-medium leading-none tracking-tight sm:text-[56px]">
-                {v}
-              </div>
-              <div className="mt-3 font-mono text-[11px] uppercase tracking-wider text-foreground/60">
-                {l}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* dot histogram */}
-        <div className="mt-14 border-t border-border pt-10">
-          <SettlementHistogram />
-          <div className="mt-4 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-wider text-foreground/55">
-            <span>Service purchases / simulated registry window</span>
-            <span className="text-yellow">● Arc-ready</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ────────────────────────── FAQ ────────────────────────── */
 
 const FAQ = [
@@ -477,8 +429,8 @@ const FAQ = [
     "A marketplace where seller agents publish fixed services and buyer agents purchase them directly through USDC escrow on Arc.",
   ],
   [
-    "How does this fit RFB3?",
-    "RFB3 asks for agent-to-agent nanopayment networks. IStoa focuses on service discovery, escrowed payment, delivery proof, and reputation that other agents can read before paying.",
+    "How does the marketplace work?",
+    "IStoa focuses on service discovery, escrowed payment, delivery proof, and reputation that other agents can read before paying.",
   ],
   [
     "What does the platform actually do?",
@@ -486,7 +438,7 @@ const FAQ = [
   ],
   [
     "Why Arc and Circle?",
-    "Arc gives the app a USDC-native testnet with USDC as the currency symbol. Circle CLI and Agent Stack provide the wallet and payment tooling agents need to pay for services.",
+    "Arc gives the app a USDC-native settlement layer. Circle CLI and Agent Stack provide the wallet and payment tooling agents need to pay for services.",
   ],
   [
     "Is the dispute system final?",
@@ -530,14 +482,14 @@ function Footer() {
               <span className="font-display text-[20px] font-semibold tracking-tight">ISTOA</span>
             </div>
             <p className="mt-4 max-w-[36ch] text-[13.5px] text-foreground/70">
-              A service marketplace for agents that need to buy from other agents. Built for Lepton
-              RFB3 on Arc.
+              A service marketplace for agents that need to buy from other agents. Designed for
+              autonomous settlement on Arc.
             </p>
           </div>
           {[
             ["MARKET", ["Service registry", "Recent purchases", "Top sellers"]],
             ["PROTOCOL", ["ServiceRegistry", "ServiceEscrow", "ReputationLedger"]],
-            ["STACK", ["Arc CLI", "Circle CLI", "Built for Lepton"]],
+            ["STACK", ["Arc CLI", "Circle CLI", "Developer docs"]],
           ].map(([title, links]) => (
             <div key={title as string}>
               <div className="mono-label">{title as string}</div>
@@ -555,9 +507,7 @@ function Footer() {
         </div>
         <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 font-mono text-[10.5px] uppercase tracking-wider text-foreground/55 sm:flex-row sm:items-center">
           <span>© 2026 IStoa · Services agents can buy.</span>
-          <span>
-            Built for the <span className="text-yellow">Lepton Agents Hackathon</span> · RFB 03
-          </span>
+          <span>Agent services · USDC escrow · Arc settlement</span>
         </div>
       </div>
     </footer>
@@ -957,8 +907,8 @@ function SettlementFigure() {
             ["Gross", "$0.4200 USDC"],
             ["Platform 0.4%", "−$0.0017"],
             ["Net to seller", "$0.4183"],
-            ["Network", "Arc Testnet"],
-            ["Chain", "5042002"],
+            ["Network", "Arc"],
+            ["Token", "USDC"],
           ].map(([k, v]) => (
             <div
               key={k}
@@ -973,43 +923,6 @@ function SettlementFigure() {
           proof hash recorded · reputation tier sustained
         </div>
       </div>
-    </div>
-  );
-}
-
-/* ────────────────────────── HISTOGRAM ────────────────────────── */
-
-function SettlementHistogram() {
-  // pseudo-random but stable heights resembling Monad's dot histogram
-  const N = 96;
-  const heights = Array.from({ length: N }, (_, i) => {
-    const t = i / N;
-    const wave =
-      0.25 +
-      0.18 * Math.sin(t * 7) +
-      0.22 * Math.sin(t * 13 + 1.2) +
-      0.18 * Math.cos(t * 23 + 0.4) +
-      0.12 * Math.sin(t * 41 + 2.1);
-    return Math.max(0.06, Math.min(0.95, wave));
-  });
-  return (
-    <div className="flex h-[180px] items-end gap-[3px]">
-      {heights.map((h, i) => (
-        <div key={i} className="flex flex-1 flex-col-reverse items-center gap-[2px]">
-          {Array.from({ length: Math.round(h * 22) }).map((_, j) => (
-            <span
-              key={j}
-              className="block h-[5px] w-[5px] rounded-full"
-              style={{
-                background:
-                  j === Math.round(h * 22) - 1
-                    ? "var(--color-yellow-deep)"
-                    : "oklch(0.55 0.008 70 / 0.55)",
-              }}
-            />
-          ))}
-        </div>
-      ))}
     </div>
   );
 }

@@ -1,12 +1,12 @@
 # IStoa
 
-IStoa is an agent service marketplace built for the Lepton Agents Hackathon, RFB3: agent-to-agent nanopayment networks.
+IStoa is an agent service marketplace for autonomous service discovery, USDC escrow, and verified seller reputation on Arc.
 
 Seller agents list permanent services. Buyer agents discover those services, purchase directly, escrow USDC on Arc, and use verified settlement history to judge reputation before paying.
 
-## Why This Fits RFB3
+## Product Focus
 
-RFB3 is about autonomous agents paying other autonomous agents. IStoa focuses on the missing market layer:
+IStoa focuses on the missing market layer between autonomous agents:
 
 - service discovery for agent sellers
 - direct buyer-agent purchasing
@@ -28,7 +28,6 @@ uv tool install git+https://github.com/the-canteen-dev/ARC-cli
 Useful Arc references:
 
 - Arc testnet RPC docs: https://arc-node.thecanteenapp.com/
-- Arc testnet chain ID: `5042002`
 - Currency symbol: `USDC`
 - Block explorer: https://testnet.arcscan.app
 
@@ -115,7 +114,6 @@ No environment variables are required for the current frontend.
 
 ## Sources
 
-- Lepton Agents Hackathon: https://lepton.thecanteenapp.com/
 - Arc testnet docs: https://arc-node.thecanteenapp.com/
 - Circle CLI docs: https://developers.circle.com/agent-stack/circle-cli
 - Arc 101 companion repo: https://github.com/the-canteen-dev/circle-agent

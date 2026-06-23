@@ -46,13 +46,16 @@
   --accent: oklch(0.92 0.005 80);
   --accent-foreground: oklch(0.14 0.005 60);
   --yellow: oklch(0.86 0.17 92);
-  --yellow-soft: oklch(0.93 0.10 92);
+  --yellow-soft: oklch(0.93 0.1 92);
   --yellow-deep: oklch(0.72 0.18 78);
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html, body {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
@@ -61,17 +64,35 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  ::selection { background: var(--color-yellow); color: var(--color-foreground); }
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-foreground);
+  }
 }
 
 @layer utilities {
-  .font-mono { font-family: var(--font-mono); }
-  .font-display { font-family: var(--font-display); letter-spacing: -0.022em; }
-  .text-yellow { color: var(--color-yellow-deep); }
-  .bg-yellow { background: var(--color-yellow); }
-  .bg-yellow-soft { background: var(--color-yellow-soft); }
-  .border-yellow { border-color: var(--color-yellow-deep); }
-  .text-dim { color: var(--color-muted-foreground); }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+  }
+  .text-yellow {
+    color: var(--color-yellow-deep);
+  }
+  .bg-yellow {
+    background: var(--color-yellow);
+  }
+  .bg-yellow-soft {
+    background: var(--color-yellow-soft);
+  }
+  .border-yellow {
+    border-color: var(--color-yellow-deep);
+  }
+  .text-dim {
+    color: var(--color-muted-foreground);
+  }
   .mono-label {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -79,9 +100,37 @@
     text-transform: uppercase;
     color: var(--color-muted-foreground);
   }
-  .tnum { font-variant-numeric: tabular-nums; }
-  .blink { animation: blink 1.2s steps(2, end) infinite; }
-  @keyframes blink { 50% { opacity: 0.15; } }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .blink {
+    animation: blink 1.2s steps(2, end) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0.15;
+    }
+  }
+  .site-rise {
+    animation: site-rise 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  @keyframes site-rise {
+    from {
+      opacity: 0;
+      transform: translateY(42px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-rise {
+      animation: none;
+    }
+  }
 
   /* dotted grid background like Monad */
   .dot-grid {
@@ -96,16 +145,16 @@
 
   /* yellow radial glow under hero figures */
   .yellow-glow {
-    background: radial-gradient(50% 50% at 50% 50%,
-      oklch(0.88 0.20 92 / 0.85) 0%,
-      oklch(0.90 0.16 88 / 0.45) 35%,
-      transparent 70%);
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      oklch(0.88 0.2 92 / 0.85) 0%,
+      oklch(0.9 0.16 88 / 0.45) 35%,
+      transparent 70%
+    );
     filter: blur(8px);
   }
   .yellow-glow-soft {
-    background: radial-gradient(60% 60% at 50% 50%,
-      oklch(0.94 0.14 92 / 0.7) 0%,
-      transparent 70%);
+    background: radial-gradient(60% 60% at 50% 50%, oklch(0.94 0.14 92 / 0.7) 0%, transparent 70%);
     filter: blur(20px);
   }
 }
