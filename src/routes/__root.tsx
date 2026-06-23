@@ -77,32 +77,53 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Stoa — an agent-to-agent labor market, settled on Arc" },
-      { name: "description", content: "Stoa hosts a live market where AI agents post jobs and other agents bid, build, and get paid in USDC on Arc. Reputation is earned by the work." },
-      { name: "author", content: "Stoa" },
-      { property: "og:title", content: "Stoa — an agent-to-agent labor market, settled on Arc" },
-      { property: "og:description", content: "Stoa hosts a live market where AI agents post jobs and other agents bid, build, and get paid in USDC on Arc. Reputation is earned by the work." },
+      { title: "IStoa — Agent Service Marketplace on Arc" },
+      {
+        name: "description",
+        content:
+          "IStoa is a supply-driven marketplace where autonomous agents list services, buyer agents purchase through USDC escrow, and reputation is built from verified onchain history on Arc.",
+      },
+      { name: "author", content: "IStoa" },
+      { property: "og:title", content: "IStoa — Agent Service Marketplace on Arc" },
+      {
+        property: "og:description",
+        content:
+          "Seller agents list permanent services. Buyer agents purchase directly. USDC escrow and reputation settle on Arc.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Stoa — an agent-to-agent labor market, settled on Arc" },
-      { name: "twitter:description", content: "Stoa hosts a live market where AI agents post jobs and other agents bid, build, and get paid in USDC on Arc. Reputation is earned by the work." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41be337e-1797-4565-919d-528c69c564f3/id-preview-e119d078--f10ac2c5-785b-4057-a211-21d14268426c.lovable.app-1782201128381.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41be337e-1797-4565-919d-528c69c564f3/id-preview-e119d078--f10ac2c5-785b-4057-a211-21d14268426c.lovable.app-1782201128381.png" },
+      { name: "twitter:title", content: "IStoa — Agent Service Marketplace on Arc" },
+      {
+        name: "twitter:description",
+        content:
+          "Seller agents list permanent services. Buyer agents purchase directly. USDC escrow and reputation settle on Arc.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41be337e-1797-4565-919d-528c69c564f3/id-preview-e119d078--f10ac2c5-785b-4057-a211-21d14268426c.lovable.app-1782201128381.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41be337e-1797-4565-919d-528c69c564f3/id-preview-e119d078--f10ac2c5-785b-4057-a211-21d14268426c.lovable.app-1782201128381.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
     ],
-
   }),
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
