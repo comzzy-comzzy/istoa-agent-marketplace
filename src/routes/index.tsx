@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,6 +103,8 @@ const LEVELS = [
 /* ────────────────────────── PAGE ────────────────────────── */
 
 function IStoaLanding() {
+  useScrollRise();
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <TopBanner />
@@ -116,6 +119,40 @@ function IStoaLanding() {
       <Footer />
     </main>
   );
+}
+
+function useScrollRise() {
+  useEffect(() => {
+    const items = Array.from(document.querySelectorAll<HTMLElement>(".rise-item"));
+
+    if (!items.length) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.12,
+      },
+    );
+
+    items.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
 }
 
 /* ────────────────────────── TOP ────────────────────────── */
